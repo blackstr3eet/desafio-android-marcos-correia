@@ -1,3 +1,4 @@
 <resources>
     <string name="application_name">Marvel</string>
+    <string name="title_action_bar_details">DETALHES</string>
 </resources>
