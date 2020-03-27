@@ -5,6 +5,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.ibm.marvel.R;
 import com.ibm.marvel.details.DetailsModel.DetailsViewModel;
 
@@ -17,12 +20,18 @@ public class DetailsActivity extends AppCompatActivity implements DetailsActivit
     protected DetailsInteractor interactor;
     protected DetailsRouter router;
 
+    private TextView name;
+    private TextView description;
+    private TextView more;
+
+    private ImageView avatar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         actionBarCustomSettings();
-
+        bindViews();
         DetailsConfigurator.INSTANCE.configure(this);
     }
 
@@ -45,6 +54,9 @@ public class DetailsActivity extends AppCompatActivity implements DetailsActivit
     }
 
     private void bindViews() {
-
+        name = findViewById(R.id.name);
+        description = findViewById(R.id.description);
+        more = findViewById(R.id.more);
+        avatar = findViewById(R.id.avatar);
     }
 }
