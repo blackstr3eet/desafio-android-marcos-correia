@@ -3,12 +3,14 @@ package com.ibm.marvel.details;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.ibm.marvel.R;
+import com.ibm.marvel.comics.ComicsActivity;
 import com.ibm.marvel.details.DetailsModel.DetailsViewModel;
 
 interface DetailsActivityInput {
@@ -23,7 +25,6 @@ public class DetailsActivity extends AppCompatActivity implements DetailsActivit
     private TextView name;
     private TextView description;
     private TextView more;
-
     private ImageView avatar;
 
     @Override
@@ -48,7 +49,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsActivit
 
     private void actionBarCustomSettings() {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.custom_action_bar_layout);
+        getSupportActionBar().setCustomView(R.layout.custom_action_bar_details_layout);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back);
     }
@@ -58,5 +59,13 @@ public class DetailsActivity extends AppCompatActivity implements DetailsActivit
         description = findViewById(R.id.description);
         more = findViewById(R.id.more);
         avatar = findViewById(R.id.avatar);
+
+        more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailsActivity.this, ComicsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
