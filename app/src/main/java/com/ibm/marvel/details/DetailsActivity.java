@@ -49,7 +49,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsActivit
 
     private void actionBarCustomSettings() {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.custom_action_bar_details_layout);
+        getSupportActionBar().setCustomView(R.layout.custom_title_details);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back);
     }
