@@ -1,130 +1,34 @@
-
 package com.ibm.marvel.model.comics;
 
-import java.util.HashMap;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
+@JsonIgnoreProperties({
     "code",
     "status",
     "copyright",
     "attributionText",
     "attributionHTML",
-    "etag",
+    "etag"
+})
+@JsonPropertyOrder({
     "data"
 })
 public class Comics {
 
-    @JsonProperty("code")
-    private long code;
-    @JsonProperty("status")
-    private String status;
-    @JsonProperty("copyright")
-    private String copyright;
-    @JsonProperty("attributionText")
-    private String attributionText;
-    @JsonProperty("attributionHTML")
-    private String attributionHTML;
-    @JsonProperty("etag")
-    private String etag;
     @JsonProperty("data")
     private Data data;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
     public Comics() {
+
     }
 
-    /**
-     * 
-     * @param copyright
-     * @param code
-     * @param data
-     * @param attributionHTML
-     * @param attributionText
-     * @param etag
-     * @param status
-     */
-    public Comics(long code, String status, String copyright, String attributionText, String attributionHTML, String etag, Data data) {
+    public Comics(Data data) {
         super();
-        this.code = code;
-        this.status = status;
-        this.copyright = copyright;
-        this.attributionText = attributionText;
-        this.attributionHTML = attributionHTML;
-        this.etag = etag;
         this.data = data;
-    }
-
-    @JsonProperty("code")
-    public long getCode() {
-        return code;
-    }
-
-    @JsonProperty("code")
-    public void setCode(long code) {
-        this.code = code;
-    }
-
-    @JsonProperty("status")
-    public String getStatus() {
-        return status;
-    }
-
-    @JsonProperty("status")
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    @JsonProperty("copyright")
-    public String getCopyright() {
-        return copyright;
-    }
-
-    @JsonProperty("copyright")
-    public void setCopyright(String copyright) {
-        this.copyright = copyright;
-    }
-
-    @JsonProperty("attributionText")
-    public String getAttributionText() {
-        return attributionText;
-    }
-
-    @JsonProperty("attributionText")
-    public void setAttributionText(String attributionText) {
-        this.attributionText = attributionText;
-    }
-
-    @JsonProperty("attributionHTML")
-    public String getAttributionHTML() {
-        return attributionHTML;
-    }
-
-    @JsonProperty("attributionHTML")
-    public void setAttributionHTML(String attributionHTML) {
-        this.attributionHTML = attributionHTML;
-    }
-
-    @JsonProperty("etag")
-    public String getEtag() {
-        return etag;
-    }
-
-    @JsonProperty("etag")
-    public void setEtag(String etag) {
-        this.etag = etag;
     }
 
     @JsonProperty("data")
@@ -136,15 +40,4 @@ public class Comics {
     public void setData(Data data) {
         this.data = data;
     }
-
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
 }

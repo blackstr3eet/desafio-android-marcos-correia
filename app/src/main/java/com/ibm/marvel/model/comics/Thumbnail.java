@@ -1,11 +1,5 @@
-
 package com.ibm.marvel.model.comics;
 
-import java.util.HashMap;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -21,21 +15,11 @@ public class Thumbnail {
     private String path;
     @JsonProperty("extension")
     private String extension;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
     public Thumbnail() {
+
     }
 
-    /**
-     * 
-     * @param path
-     * @param extension
-     */
     public Thumbnail(String path, String extension) {
         super();
         this.path = path;
@@ -61,15 +45,4 @@ public class Thumbnail {
     public void setExtension(String extension) {
         this.extension = extension;
     }
-
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
 }

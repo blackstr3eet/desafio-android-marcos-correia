@@ -1,6 +1,7 @@
 package com.ibm.marvel.network;
 
 import androidx.lifecycle.MutableLiveData;
+import com.ibm.marvel.model.comics.Comics;
 import com.ibm.marvel.model.details.Details;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,6 +43,27 @@ public class Repository {
 
             @Override
             public void onFailure(Call<Details> call, Throwable t) {
+                data.setValue(null);
+            }
+        });
+
+        return data;
+    }
+
+    public MutableLiveData<Comics> getComics(long identifier) {
+
+        MutableLiveData<Comics> data = new MutableLiveData<>();
+
+        api.getComics(identifier, TIMESTAMP, KEY, HASH).enqueue(new Callback<Comics>() {
+            @Override
+            public void onResponse(Call<Comics> call, Response<Comics> response) {
+                if (response.isSuccessful()){
+                    data.setValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Comics> call, Throwable t) {
                 data.setValue(null);
             }
         });
