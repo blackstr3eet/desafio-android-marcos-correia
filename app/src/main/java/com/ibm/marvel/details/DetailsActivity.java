@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.ibm.marvel.R;
@@ -25,6 +24,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsActivit
     private TextView name;
     private TextView description;
     private TextView more;
+
     private ImageView avatar;
 
     @Override
@@ -60,12 +60,9 @@ public class DetailsActivity extends AppCompatActivity implements DetailsActivit
         more = findViewById(R.id.more);
         avatar = findViewById(R.id.avatar);
 
-        more.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DetailsActivity.this, ComicsActivity.class);
-                startActivity(intent);
-            }
+        more.setOnClickListener( view -> {
+            Intent intent = new Intent(DetailsActivity.this, ComicsActivity.class);
+            startActivity(intent);
         });
     }
 }
