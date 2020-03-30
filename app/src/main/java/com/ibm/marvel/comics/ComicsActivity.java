@@ -6,8 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import com.ibm.marvel.R;
+import com.ibm.marvel.comics.ComicsModel.ComicsViewModel;
 
-public class ComicsActivity extends AppCompatActivity {
+interface ComicsActivityInput {
+    void displayComicsData(ComicsViewModel viewModel);
+}
+
+public class ComicsActivity extends AppCompatActivity implements ComicsActivityInput {
+
+    protected ComicsInteractor interactor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +22,12 @@ public class ComicsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_comics);
         actionBarCustomSettings();
         bindViews();
+        ComicsConfigurator.INSTANCE.configure(this);
+    }
+
+    @Override
+    public void displayComicsData(ComicsViewModel viewModel) {
+
     }
 
     @Override

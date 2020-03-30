@@ -5,7 +5,7 @@ import java.lang.ref.WeakReference;
 public enum DetailsConfigurator {
     INSTANCE;
 
-    protected void configure(DetailsActivity activity){
+    protected void configure(DetailsActivity activity) {
 
         DetailsRouter router = new DetailsRouter();
         router.activity = new WeakReference<>(activity);
@@ -16,10 +16,10 @@ public enum DetailsConfigurator {
         DetailsInteractor interactor = new DetailsInteractor();
         interactor.presenterInput = presenter;
 
-        if (activity.interactor == null){
+        if (activity.interactor == null) {
             activity.interactor = interactor;
         }
-        if (activity.router == null){
+        if (activity.router == null) {
             activity.router = router;
         }
     }
