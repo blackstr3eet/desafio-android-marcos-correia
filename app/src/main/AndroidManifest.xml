@@ -15,16 +15,16 @@
 
         <activity
             android:name=".characters.CharactersActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".details.DetailsActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".details.DetailsActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".comics.ComicsActivity"
