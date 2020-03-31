@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties({
-    "id",
     "description",
     "modified",
     "resourceURI",
@@ -18,11 +17,14 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "urls"
 })
 @JsonPropertyOrder({
+    "id",
     "name",
     "thumbnail"
 })
 public class Result {
 
+    @JsonProperty("id")
+    private long id;
     @JsonProperty("name")
     private String name;
     @JsonProperty("thumbnail")
@@ -32,10 +34,20 @@ public class Result {
 
     }
 
-    public Result(String name, Thumbnail thumbnail) {
-        super();
+    public Result(long id, String name, Thumbnail thumbnail) {
+        this.id = id;
         this.name = name;
         this.thumbnail = thumbnail;
+    }
+
+    @JsonProperty("id")
+    public long getId() {
+        return id;
+    }
+
+    @JsonProperty("id")
+    public void setId(long id) {
+        this.id = id;
     }
 
     @JsonProperty("name")

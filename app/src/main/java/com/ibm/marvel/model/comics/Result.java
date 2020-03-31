@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties({
-    "id",
     "digitalId",
     "issueNumber",
     "variantDescription",
@@ -35,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "events"
 })
 @JsonPropertyOrder({
+    "id",
     "title",
     "description",
     "prices",
@@ -42,6 +42,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 })
 public class Result {
 
+    @JsonProperty("id")
+    private long id;
     @JsonProperty("title")
     private String title;
     @JsonProperty("description")
@@ -55,12 +57,22 @@ public class Result {
 
     }
 
-    public Result(String title, String description, List<Price> prices, Thumbnail thumbnail) {
-        super();
+    public Result(long id, String title, String description, List<Price> prices, Thumbnail thumbnail) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.prices = prices;
         this.thumbnail = thumbnail;
+    }
+
+    @JsonProperty("id")
+    public long getId() {
+        return id;
+    }
+
+    @JsonProperty("id")
+    public void setId(long id) {
+        this.id = id;
     }
 
     @JsonProperty("title")
