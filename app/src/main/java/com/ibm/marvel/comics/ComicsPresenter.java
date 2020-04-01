@@ -1,10 +1,9 @@
 package com.ibm.marvel.comics;
 
-import com.ibm.marvel.comics.ComicsModel.ComicsResponse;
 import java.lang.ref.WeakReference;
 
 interface ComicsPresenterInput {
-    void presentComicsMetaData(ComicsResponse response);
+    void presentComicsMetaData();
 }
 
 public class ComicsPresenter implements ComicsPresenterInput {
@@ -12,7 +11,7 @@ public class ComicsPresenter implements ComicsPresenterInput {
     protected WeakReference<ComicsActivityInput> activityInput;
 
     @Override
-    public void presentComicsMetaData(ComicsResponse response) {
-
+    public void presentComicsMetaData() {
+        activityInput.get().displayComicsData(null);
     }
 }

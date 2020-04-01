@@ -1,9 +1,7 @@
 package com.ibm.marvel.comics;
 
-import static com.ibm.marvel.comics.ComicsModel.*;
-
 interface ComicsInteractorInput {
-    void fetchComicsMetaData(ComicsRequest request);
+    void fetchComicsMetaData();
 }
 
 public class ComicsInteractor implements ComicsInteractorInput {
@@ -11,7 +9,7 @@ public class ComicsInteractor implements ComicsInteractorInput {
     protected ComicsPresenterInput presenterInput;
 
     @Override
-    public void fetchComicsMetaData(ComicsRequest request) {
-
+    public void fetchComicsMetaData() {
+        presenterInput.presentComicsMetaData();
     }
 }
