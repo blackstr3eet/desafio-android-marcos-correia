@@ -36,10 +36,7 @@ public class CharactersAdapter extends RecyclerView.Adapter<CharactersAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        new ImageDownloadTask(photo).execute(
-                characters.get(position).getThumbnail().getPath(),
-                characters.get(position).getThumbnail().getExtension());
-
+        new ImageDownloadTask(photo).execute(characters.get(position).getThumbnail().getPath(), characters.get(position).getThumbnail().getExtension());
         name.setText(characters.get(position).getName());
     }
 

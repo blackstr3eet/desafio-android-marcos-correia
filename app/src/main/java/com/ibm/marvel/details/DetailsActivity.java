@@ -3,14 +3,15 @@ package com.ibm.marvel.details;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import android.content.Intent;
+import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.ibm.marvel.R;
-import com.ibm.marvel.comics.ComicsActivity;
-import com.ibm.marvel.details.DetailsModel.DetailsViewModel;
+import com.ibm.marvel.model.details.Result;
+import com.ibm.marvel.util.ImageDownloadTask;
 
 interface DetailsActivityInput {
     void displayDetailsData(DetailsViewModel viewModel);
@@ -24,7 +25,6 @@ public class DetailsActivity extends AppCompatActivity implements DetailsActivit
     private TextView name;
     private TextView description;
     private TextView more;
-
     private ImageView avatar;
 
     @Override
@@ -34,11 +34,20 @@ public class DetailsActivity extends AppCompatActivity implements DetailsActivit
         actionBarCustomSettings();
         bindViews();
         DetailsConfigurator.INSTANCE.configure(this);
+        interactor.fetchDetailsMetaData();
     }
 
     @Override
     public void displayDetailsData(DetailsViewModel viewModel) {
-
+        viewModel = ViewModelProviders.of(this).get(DetailsViewModel.class);
+        viewModel.init(getIntent().getLongExtra("id", 0));
+        viewModel.getMutableLiveData().observe(this, response -> {
+            Result data = response.getData().getResults().stream().findFirst().get();
+            name.setText(data.getName());
+            description.setText(data.getDescription());
+            more.setOnClickListener( view -> router.callScreen(data.getId()));
+            new ImageDownloadTask(avatar).execute(data.getThumbnail().getPath(), data.getThumbnail().getExtension());
+        });
     }
 
     @Override
@@ -59,10 +68,5 @@ public class DetailsActivity extends AppCompatActivity implements DetailsActivit
         description = findViewById(R.id.description);
         more = findViewById(R.id.more);
         avatar = findViewById(R.id.avatar);
-
-        more.setOnClickListener( view -> {
-            Intent intent = new Intent(DetailsActivity.this, ComicsActivity.class);
-            startActivity(intent);
-        });
     }
 }

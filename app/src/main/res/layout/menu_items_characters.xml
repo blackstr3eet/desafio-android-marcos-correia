@@ -31,7 +31,6 @@
             android:textStyle="bold"
             android:maxLines="2"
             android:textColor="@android:color/white"
-            android:background="@drawable/border_menu"
-            android:text="@string/empty" />
+            android:background="@drawable/border_menu" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

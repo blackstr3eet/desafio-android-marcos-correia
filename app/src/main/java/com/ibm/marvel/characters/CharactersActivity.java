@@ -40,10 +40,7 @@ public class CharactersActivity extends AppCompatActivity implements CharactersA
         viewModel.getMutableLiveData().observe(this, response -> {
             List<Result> data = response.getData().getResults();
             CharactersAdapter adapter = new CharactersAdapter(data);
-            adapter.setOnItemClickListener(position -> {
-                router.callScreen(data.get(position).getId());
-            });
-
+            adapter.setOnItemClickListener(position -> router.callScreen(data.get(position).getId()));
             RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
